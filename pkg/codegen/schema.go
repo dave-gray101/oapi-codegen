@@ -190,7 +190,7 @@ type Discriminator struct {
 }
 
 func (d *Discriminator) JSONTag() string {
-	return fmt.Sprintf("`json:\"%s\"`", d.Property)
+	return fmt.Sprintf("`json:\"%s\" yaml:\"%s\"`", d.Property, d.Property)
 }
 
 func (d *Discriminator) PropertyName() string {
@@ -677,11 +677,13 @@ func GenFieldsFromProperties(props []Property) []string {
 
 		if !omitEmpty {
 			fieldTags["json"] = p.JsonFieldName
+			fieldTags["yaml"] = p.JsonFieldName
 			if p.NeedsFormTag {
 				fieldTags["form"] = p.JsonFieldName
 			}
 		} else {
 			fieldTags["json"] = p.JsonFieldName + ",omitempty"
+			fieldTags["yaml"] = p.JsonFieldName + ",omitempty"
 			if p.NeedsFormTag {
 				fieldTags["form"] = p.JsonFieldName + ",omitempty"
 			}
