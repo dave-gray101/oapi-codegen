@@ -1,0 +1,15 @@
+var EndpointToRequestBodyMap = map[string]interface{}{
+{{range .}}{{$opid := .OperationId -}}
+    {{if eq (len .Bodies) 1 -}}
+        {{with index .Bodies 0}}{{ $typeDef := .TypeDef $opid -}}
+            "{{$opid}}":{{$typeDef.TypeName}}{},
+        {{end -}}
+    {{else -}}
+        {{range .Bodies -}}
+            {{if and .IsSupported .Default -}}
+                "{{$opid}}":{{.TypeName}}{},{{break -}}
+            {{end -}}
+        {{end -}}
+    {{end -}}
+{{end -}}
+}
