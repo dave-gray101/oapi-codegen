@@ -673,19 +673,21 @@ func GenFieldsFromProperties(props []Property) []string {
 			}
 		}
 
+		
+		fieldTagList := append(globalState.options.OutputOptions.AdditionalPropertyTags, "json")
+		if p.NeedsFormTag {
+			fieldTagList = append(fieldTagList, "form")
+		}
+
 		fieldTags := make(map[string]string)
 
 		if !omitEmpty {
-			fieldTags["json"] = p.JsonFieldName
-			fieldTags["yaml"] = p.JsonFieldName
-			if p.NeedsFormTag {
-				fieldTags["form"] = p.JsonFieldName
+			for _, v := range fieldTagList {
+				fieldTags[v] = p.JsonFieldName
 			}
 		} else {
-			fieldTags["json"] = p.JsonFieldName + ",omitempty"
-			fieldTags["yaml"] = p.JsonFieldName + ",omitempty"
-			if p.NeedsFormTag {
-				fieldTags["form"] = p.JsonFieldName + ",omitempty"
+			for _, v := range fieldTagList {
+				fieldTags[v] =  p.JsonFieldName + ",omitempty"
 			}
 		}
 
