@@ -44,6 +44,24 @@ var (
 	titleCaser = cases.Title(language.English)
 )
 
+// This function takes a pointer to an OperationDefinition and returns the go type name of default request body
+// If op.Bodies has exactly len(1), return the corresponding type.
+// Otherwise, return the first Body where Default is true.
+func genDefaultRequestBodyType(op *OperationDefinition) string {
+	if op == nil {
+		return ""
+	}
+	if len(op.Bodies) == 1 {
+		return op.Bodies[0].TypeDef(op.OperationId).TypeName
+	}
+	for _, body := range op.Bodies {
+		if (body.IsSupported() && body.Default) {
+			return body.TypeDef(op.OperationId).TypeName
+		}
+	}
+	return ""
+}
+
 // This function takes an array of Parameter definition, and generates a valid
 // Go parameter declaration from them, eg:
 // ", foo int, bar string, baz float32". The preceding comma is there to save
@@ -279,6 +297,7 @@ func stripNewLines(s string) string {
 // TemplateFunctions is passed to the template engine, and we can call each
 // function here by keyName from the template code.
 var TemplateFunctions = template.FuncMap{
+	"genDefaultRequestBodyType":  genDefaultRequestBodyType,
 	"genParamArgs":               genParamArgs,
 	"genParamTypes":              genParamTypes,
 	"genParamNames":              genParamNames,
