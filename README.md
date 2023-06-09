@@ -15,7 +15,8 @@ you can focus on implementing the business logic for your service.
 
 We have chosen to focus on [Echo](https://github.com/labstack/echo) as
 our default HTTP routing engine, due to its speed and simplicity for the generated
-stubs, and [Chi](https://github.com/go-chi/chi), and [Gin](https://github.com/gin-gonic/gin)
+stubs. [Chi](https://github.com/go-chi/chi), [Gin](https://github.com/gin-gonic/gin),
+[gorilla/mux](https://github.com/gorilla/mux), and [Fiber](https://github.com/gofiber/fiber)
 have also been added by contributors as additional routers. We chose Echo because
 the `Context` object is a mockable interface, and it allows for some advanced
 testing.
@@ -34,7 +35,7 @@ We're going to use the OpenAPI example of the
 in the descriptions below, please have a look at it.
 
 In order to create a Go server to serve this exact schema, you would have to
-write a lot of boilerplate code to perform all the marshalling and unmarshalling
+write a lot of boilerplate code to perform all the marshaling and unmarshaling
 into objects which match the OpenAPI 3.0 definition. The code generator in this
 directory does a lot of that for you. You would run it like so:
 
@@ -111,7 +112,7 @@ type ServerInterface interface {
 These are the functions which you will implement yourself in order to create
 a server conforming to the API specification. Normally, all the arguments and
 parameters are stored on the `echo.Context` in handlers, so we do the tedious
-work of unmarshalling the JSON automatically, simply passing values into
+work of unmarshaling the JSON automatically, simply passing values into
 your handlers.
 
 Notice that `FindPetById` takes a parameter `id int64`. All path arguments
@@ -700,6 +701,8 @@ you can specify any combination of those.
   same package to compile.
 - `chi-server`: generate the Chi server boilerplate. This code is dependent on
   that produced by the `types` target.
+- `fiber`: generate the Fiber server boilerplate. This code is dependent
+  on that produced by the `types` target.
 - `client`: generate the client boilerplate. It, too, requires the types to be
   present in its package.
 - `spec`: embed the OpenAPI spec into the generated code as a gzipped blob.

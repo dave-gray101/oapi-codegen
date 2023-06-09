@@ -588,128 +588,130 @@ func NewGetCookieRequest(server string, params *GetCookieParams) (*http.Request,
 		return nil, err
 	}
 
-	if params.P != nil {
-		var cookieParam0 string
+	if params != nil {
 
-		cookieParam0, err = runtime.StyleParamWithLocation("simple", false, "p", runtime.ParamLocationCookie, *params.P)
-		if err != nil {
-			return nil, err
+		if params.P != nil {
+			var cookieParam0 string
+
+			cookieParam0, err = runtime.StyleParamWithLocation("simple", false, "p", runtime.ParamLocationCookie, *params.P)
+			if err != nil {
+				return nil, err
+			}
+
+			cookie0 := &http.Cookie{
+				Name:  "p",
+				Value: cookieParam0,
+			}
+			req.AddCookie(cookie0)
 		}
 
-		cookie0 := &http.Cookie{
-			Name:  "p",
-			Value: cookieParam0,
+		if params.Ep != nil {
+			var cookieParam1 string
+
+			cookieParam1, err = runtime.StyleParamWithLocation("simple", true, "ep", runtime.ParamLocationCookie, *params.Ep)
+			if err != nil {
+				return nil, err
+			}
+
+			cookie1 := &http.Cookie{
+				Name:  "ep",
+				Value: cookieParam1,
+			}
+			req.AddCookie(cookie1)
 		}
-		req.AddCookie(cookie0)
+
+		if params.Ea != nil {
+			var cookieParam2 string
+
+			cookieParam2, err = runtime.StyleParamWithLocation("simple", true, "ea", runtime.ParamLocationCookie, *params.Ea)
+			if err != nil {
+				return nil, err
+			}
+
+			cookie2 := &http.Cookie{
+				Name:  "ea",
+				Value: cookieParam2,
+			}
+			req.AddCookie(cookie2)
+		}
+
+		if params.A != nil {
+			var cookieParam3 string
+
+			cookieParam3, err = runtime.StyleParamWithLocation("simple", false, "a", runtime.ParamLocationCookie, *params.A)
+			if err != nil {
+				return nil, err
+			}
+
+			cookie3 := &http.Cookie{
+				Name:  "a",
+				Value: cookieParam3,
+			}
+			req.AddCookie(cookie3)
+		}
+
+		if params.Eo != nil {
+			var cookieParam4 string
+
+			cookieParam4, err = runtime.StyleParamWithLocation("simple", true, "eo", runtime.ParamLocationCookie, *params.Eo)
+			if err != nil {
+				return nil, err
+			}
+
+			cookie4 := &http.Cookie{
+				Name:  "eo",
+				Value: cookieParam4,
+			}
+			req.AddCookie(cookie4)
+		}
+
+		if params.O != nil {
+			var cookieParam5 string
+
+			cookieParam5, err = runtime.StyleParamWithLocation("simple", false, "o", runtime.ParamLocationCookie, *params.O)
+			if err != nil {
+				return nil, err
+			}
+
+			cookie5 := &http.Cookie{
+				Name:  "o",
+				Value: cookieParam5,
+			}
+			req.AddCookie(cookie5)
+		}
+
+		if params.Co != nil {
+			var cookieParam6 string
+
+			var cookieParamBuf6 []byte
+			cookieParamBuf6, err = json.Marshal(*params.Co)
+			if err != nil {
+				return nil, err
+			}
+			cookieParam6 = url.QueryEscape(string(cookieParamBuf6))
+
+			cookie6 := &http.Cookie{
+				Name:  "co",
+				Value: cookieParam6,
+			}
+			req.AddCookie(cookie6)
+		}
+
+		if params.N1s != nil {
+			var cookieParam7 string
+
+			cookieParam7, err = runtime.StyleParamWithLocation("simple", true, "1s", runtime.ParamLocationCookie, *params.N1s)
+			if err != nil {
+				return nil, err
+			}
+
+			cookie7 := &http.Cookie{
+				Name:  "1s",
+				Value: cookieParam7,
+			}
+			req.AddCookie(cookie7)
+		}
 	}
-
-	if params.Ep != nil {
-		var cookieParam1 string
-
-		cookieParam1, err = runtime.StyleParamWithLocation("simple", true, "ep", runtime.ParamLocationCookie, *params.Ep)
-		if err != nil {
-			return nil, err
-		}
-
-		cookie1 := &http.Cookie{
-			Name:  "ep",
-			Value: cookieParam1,
-		}
-		req.AddCookie(cookie1)
-	}
-
-	if params.Ea != nil {
-		var cookieParam2 string
-
-		cookieParam2, err = runtime.StyleParamWithLocation("simple", true, "ea", runtime.ParamLocationCookie, *params.Ea)
-		if err != nil {
-			return nil, err
-		}
-
-		cookie2 := &http.Cookie{
-			Name:  "ea",
-			Value: cookieParam2,
-		}
-		req.AddCookie(cookie2)
-	}
-
-	if params.A != nil {
-		var cookieParam3 string
-
-		cookieParam3, err = runtime.StyleParamWithLocation("simple", false, "a", runtime.ParamLocationCookie, *params.A)
-		if err != nil {
-			return nil, err
-		}
-
-		cookie3 := &http.Cookie{
-			Name:  "a",
-			Value: cookieParam3,
-		}
-		req.AddCookie(cookie3)
-	}
-
-	if params.Eo != nil {
-		var cookieParam4 string
-
-		cookieParam4, err = runtime.StyleParamWithLocation("simple", true, "eo", runtime.ParamLocationCookie, *params.Eo)
-		if err != nil {
-			return nil, err
-		}
-
-		cookie4 := &http.Cookie{
-			Name:  "eo",
-			Value: cookieParam4,
-		}
-		req.AddCookie(cookie4)
-	}
-
-	if params.O != nil {
-		var cookieParam5 string
-
-		cookieParam5, err = runtime.StyleParamWithLocation("simple", false, "o", runtime.ParamLocationCookie, *params.O)
-		if err != nil {
-			return nil, err
-		}
-
-		cookie5 := &http.Cookie{
-			Name:  "o",
-			Value: cookieParam5,
-		}
-		req.AddCookie(cookie5)
-	}
-
-	if params.Co != nil {
-		var cookieParam6 string
-
-		var cookieParamBuf6 []byte
-		cookieParamBuf6, err = json.Marshal(*params.Co)
-		if err != nil {
-			return nil, err
-		}
-		cookieParam6 = url.QueryEscape(string(cookieParamBuf6))
-
-		cookie6 := &http.Cookie{
-			Name:  "co",
-			Value: cookieParam6,
-		}
-		req.AddCookie(cookie6)
-	}
-
-	if params.N1s != nil {
-		var cookieParam7 string
-
-		cookieParam7, err = runtime.StyleParamWithLocation("simple", true, "1s", runtime.ParamLocationCookie, *params.N1s)
-		if err != nil {
-			return nil, err
-		}
-
-		cookie7 := &http.Cookie{
-			Name:  "1s",
-			Value: cookieParam7,
-		}
-		req.AddCookie(cookie7)
-	}
-
 	return req, nil
 }
 
@@ -786,94 +788,98 @@ func NewGetHeaderRequest(server string, params *GetHeaderParams) (*http.Request,
 		return nil, err
 	}
 
-	if params.XPrimitive != nil {
-		var headerParam0 string
+	if params != nil {
 
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "X-Primitive", runtime.ParamLocationHeader, *params.XPrimitive)
-		if err != nil {
-			return nil, err
+		if params.XPrimitive != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithLocation("simple", false, "X-Primitive", runtime.ParamLocationHeader, *params.XPrimitive)
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("X-Primitive", headerParam0)
 		}
 
-		req.Header.Set("X-Primitive", headerParam0)
-	}
+		if params.XPrimitiveExploded != nil {
+			var headerParam1 string
 
-	if params.XPrimitiveExploded != nil {
-		var headerParam1 string
+			headerParam1, err = runtime.StyleParamWithLocation("simple", true, "X-Primitive-Exploded", runtime.ParamLocationHeader, *params.XPrimitiveExploded)
+			if err != nil {
+				return nil, err
+			}
 
-		headerParam1, err = runtime.StyleParamWithLocation("simple", true, "X-Primitive-Exploded", runtime.ParamLocationHeader, *params.XPrimitiveExploded)
-		if err != nil {
-			return nil, err
+			req.Header.Set("X-Primitive-Exploded", headerParam1)
 		}
 
-		req.Header.Set("X-Primitive-Exploded", headerParam1)
-	}
+		if params.XArrayExploded != nil {
+			var headerParam2 string
 
-	if params.XArrayExploded != nil {
-		var headerParam2 string
+			headerParam2, err = runtime.StyleParamWithLocation("simple", true, "X-Array-Exploded", runtime.ParamLocationHeader, *params.XArrayExploded)
+			if err != nil {
+				return nil, err
+			}
 
-		headerParam2, err = runtime.StyleParamWithLocation("simple", true, "X-Array-Exploded", runtime.ParamLocationHeader, *params.XArrayExploded)
-		if err != nil {
-			return nil, err
+			req.Header.Set("X-Array-Exploded", headerParam2)
 		}
 
-		req.Header.Set("X-Array-Exploded", headerParam2)
-	}
+		if params.XArray != nil {
+			var headerParam3 string
 
-	if params.XArray != nil {
-		var headerParam3 string
+			headerParam3, err = runtime.StyleParamWithLocation("simple", false, "X-Array", runtime.ParamLocationHeader, *params.XArray)
+			if err != nil {
+				return nil, err
+			}
 
-		headerParam3, err = runtime.StyleParamWithLocation("simple", false, "X-Array", runtime.ParamLocationHeader, *params.XArray)
-		if err != nil {
-			return nil, err
+			req.Header.Set("X-Array", headerParam3)
 		}
 
-		req.Header.Set("X-Array", headerParam3)
-	}
+		if params.XObjectExploded != nil {
+			var headerParam4 string
 
-	if params.XObjectExploded != nil {
-		var headerParam4 string
+			headerParam4, err = runtime.StyleParamWithLocation("simple", true, "X-Object-Exploded", runtime.ParamLocationHeader, *params.XObjectExploded)
+			if err != nil {
+				return nil, err
+			}
 
-		headerParam4, err = runtime.StyleParamWithLocation("simple", true, "X-Object-Exploded", runtime.ParamLocationHeader, *params.XObjectExploded)
-		if err != nil {
-			return nil, err
+			req.Header.Set("X-Object-Exploded", headerParam4)
 		}
 
-		req.Header.Set("X-Object-Exploded", headerParam4)
-	}
+		if params.XObject != nil {
+			var headerParam5 string
 
-	if params.XObject != nil {
-		var headerParam5 string
+			headerParam5, err = runtime.StyleParamWithLocation("simple", false, "X-Object", runtime.ParamLocationHeader, *params.XObject)
+			if err != nil {
+				return nil, err
+			}
 
-		headerParam5, err = runtime.StyleParamWithLocation("simple", false, "X-Object", runtime.ParamLocationHeader, *params.XObject)
-		if err != nil {
-			return nil, err
+			req.Header.Set("X-Object", headerParam5)
 		}
 
-		req.Header.Set("X-Object", headerParam5)
-	}
+		if params.XComplexObject != nil {
+			var headerParam6 string
 
-	if params.XComplexObject != nil {
-		var headerParam6 string
+			var headerParamBuf6 []byte
+			headerParamBuf6, err = json.Marshal(*params.XComplexObject)
+			if err != nil {
+				return nil, err
+			}
+			headerParam6 = string(headerParamBuf6)
 
-		var headerParamBuf6 []byte
-		headerParamBuf6, err = json.Marshal(*params.XComplexObject)
-		if err != nil {
-			return nil, err
-		}
-		headerParam6 = string(headerParamBuf6)
-
-		req.Header.Set("X-Complex-Object", headerParam6)
-	}
-
-	if params.N1StartingWithNumber != nil {
-		var headerParam7 string
-
-		headerParam7, err = runtime.StyleParamWithLocation("simple", false, "1-Starting-With-Number", runtime.ParamLocationHeader, *params.N1StartingWithNumber)
-		if err != nil {
-			return nil, err
+			req.Header.Set("X-Complex-Object", headerParam6)
 		}
 
-		req.Header.Set("1-Starting-With-Number", headerParam7)
+		if params.N1StartingWithNumber != nil {
+			var headerParam7 string
+
+			headerParam7, err = runtime.StyleParamWithLocation("simple", false, "1-Starting-With-Number", runtime.ParamLocationHeader, *params.N1StartingWithNumber)
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("1-Starting-With-Number", headerParam7)
+		}
+
 	}
 
 	return req, nil
@@ -2752,10 +2758,10 @@ func (w *ServerInterfaceWrapper) GetContentObject(ctx echo.Context) error {
 
 	err = json.Unmarshal([]byte(ctx.Param("param")), &param)
 	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "Error unmarshalling parameter 'param' as JSON")
+		return echo.NewHTTPError(http.StatusBadRequest, "Error unmarshaling parameter 'param' as JSON")
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetContentObject(ctx, param)
 	return err
 }
@@ -2843,7 +2849,7 @@ func (w *ServerInterfaceWrapper) GetCookie(ctx echo.Context) error {
 		}
 		err = json.Unmarshal([]byte(decoded), &value)
 		if err != nil {
-			return echo.NewHTTPError(http.StatusBadRequest, "Error unmarshalling parameter 'co' as JSON")
+			return echo.NewHTTPError(http.StatusBadRequest, "Error unmarshaling parameter 'co' as JSON")
 		}
 		params.Co = &value
 
@@ -2860,7 +2866,7 @@ func (w *ServerInterfaceWrapper) GetCookie(ctx echo.Context) error {
 
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetCookie(ctx, params)
 	return err
 }
@@ -2878,7 +2884,7 @@ func (w *ServerInterfaceWrapper) EnumParams(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter enumPathParam: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.EnumParams(ctx, params)
 	return err
 }
@@ -2991,7 +2997,7 @@ func (w *ServerInterfaceWrapper) GetHeader(ctx echo.Context) error {
 
 		err = json.Unmarshal([]byte(valueList[0]), &XComplexObject)
 		if err != nil {
-			return echo.NewHTTPError(http.StatusBadRequest, "Error unmarshalling parameter 'X-Complex-Object' as JSON")
+			return echo.NewHTTPError(http.StatusBadRequest, "Error unmarshaling parameter 'X-Complex-Object' as JSON")
 		}
 
 		params.XComplexObject = &XComplexObject
@@ -3012,7 +3018,7 @@ func (w *ServerInterfaceWrapper) GetHeader(ctx echo.Context) error {
 		params.N1StartingWithNumber = &N1StartingWithNumber
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetHeader(ctx, params)
 	return err
 }
@@ -3028,7 +3034,7 @@ func (w *ServerInterfaceWrapper) GetLabelExplodeArray(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter param: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetLabelExplodeArray(ctx, param)
 	return err
 }
@@ -3044,7 +3050,7 @@ func (w *ServerInterfaceWrapper) GetLabelExplodeObject(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter param: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetLabelExplodeObject(ctx, param)
 	return err
 }
@@ -3060,7 +3066,7 @@ func (w *ServerInterfaceWrapper) GetLabelNoExplodeArray(ctx echo.Context) error 
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter param: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetLabelNoExplodeArray(ctx, param)
 	return err
 }
@@ -3076,7 +3082,7 @@ func (w *ServerInterfaceWrapper) GetLabelNoExplodeObject(ctx echo.Context) error
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter param: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetLabelNoExplodeObject(ctx, param)
 	return err
 }
@@ -3092,7 +3098,7 @@ func (w *ServerInterfaceWrapper) GetMatrixExplodeArray(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter id: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetMatrixExplodeArray(ctx, id)
 	return err
 }
@@ -3108,7 +3114,7 @@ func (w *ServerInterfaceWrapper) GetMatrixExplodeObject(ctx echo.Context) error 
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter id: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetMatrixExplodeObject(ctx, id)
 	return err
 }
@@ -3124,7 +3130,7 @@ func (w *ServerInterfaceWrapper) GetMatrixNoExplodeArray(ctx echo.Context) error
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter id: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetMatrixNoExplodeArray(ctx, id)
 	return err
 }
@@ -3140,7 +3146,7 @@ func (w *ServerInterfaceWrapper) GetMatrixNoExplodeObject(ctx echo.Context) erro
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter id: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetMatrixNoExplodeObject(ctx, id)
 	return err
 }
@@ -3153,7 +3159,7 @@ func (w *ServerInterfaceWrapper) GetPassThrough(ctx echo.Context) error {
 
 	param = ctx.Param("param")
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetPassThrough(ctx, param)
 	return err
 }
@@ -3171,7 +3177,7 @@ func (w *ServerInterfaceWrapper) GetDeepObject(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter deepObj: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetDeepObject(ctx, params)
 	return err
 }
@@ -3238,7 +3244,7 @@ func (w *ServerInterfaceWrapper) GetQueryForm(ctx echo.Context) error {
 		var value ComplexObject
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
-			return echo.NewHTTPError(http.StatusBadRequest, "Error unmarshalling parameter 'co' as JSON")
+			return echo.NewHTTPError(http.StatusBadRequest, "Error unmarshaling parameter 'co' as JSON")
 		}
 		params.Co = &value
 
@@ -3251,7 +3257,7 @@ func (w *ServerInterfaceWrapper) GetQueryForm(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter 1s: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetQueryForm(ctx, params)
 	return err
 }
@@ -3267,7 +3273,7 @@ func (w *ServerInterfaceWrapper) GetSimpleExplodeArray(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter param: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetSimpleExplodeArray(ctx, param)
 	return err
 }
@@ -3283,7 +3289,7 @@ func (w *ServerInterfaceWrapper) GetSimpleExplodeObject(ctx echo.Context) error 
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter param: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetSimpleExplodeObject(ctx, param)
 	return err
 }
@@ -3299,7 +3305,7 @@ func (w *ServerInterfaceWrapper) GetSimpleNoExplodeArray(ctx echo.Context) error
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter param: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetSimpleNoExplodeArray(ctx, param)
 	return err
 }
@@ -3315,7 +3321,7 @@ func (w *ServerInterfaceWrapper) GetSimpleNoExplodeObject(ctx echo.Context) erro
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter param: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetSimpleNoExplodeObject(ctx, param)
 	return err
 }
@@ -3331,7 +3337,7 @@ func (w *ServerInterfaceWrapper) GetSimplePrimitive(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter param: %s", err))
 	}
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetSimplePrimitive(ctx, param)
 	return err
 }
@@ -3344,7 +3350,7 @@ func (w *ServerInterfaceWrapper) GetStartingWithNumber(ctx echo.Context) error {
 
 	n1param = ctx.Param("1param")
 
-	// Invoke the callback with all the unmarshalled arguments
+	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetStartingWithNumber(ctx, n1param)
 	return err
 }

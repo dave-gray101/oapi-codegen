@@ -167,7 +167,7 @@ type TypeDefinition struct {
 }
 
 // ResponseTypeDefinition is an extension of TypeDefinition, specifically for
-// response unmarshalling in ClientWithResponses.
+// response unmarshaling in ClientWithResponses.
 type ResponseTypeDefinition struct {
 	TypeDefinition
 	// The content type name where this is used, eg, application/json
@@ -241,6 +241,7 @@ func GenerateGoSchema(sref *openapi3.SchemaRef, path []string) (Schema, error) {
 			GoType:         refType,
 			Description:    schema.Description,
 			DefineViaAlias: true,
+			OAPISchema:     schema,
 		}, nil
 	}
 
@@ -723,6 +724,9 @@ func additionalPropertiesType(schema Schema) string {
 	addPropsType := schema.AdditionalPropertiesType.GoType
 	if schema.AdditionalPropertiesType.RefType != "" {
 		addPropsType = schema.AdditionalPropertiesType.RefType
+	}
+	if schema.AdditionalPropertiesType.OAPISchema != nil && schema.AdditionalPropertiesType.OAPISchema.Nullable {
+		addPropsType = "*" + addPropsType
 	}
 	return addPropsType
 }
