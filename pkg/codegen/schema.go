@@ -674,7 +674,6 @@ func GenFieldsFromProperties(props []Property) []string {
 			}
 		}
 
-		
 		fieldTagList := append(globalState.options.OutputOptions.AdditionalPropertyTags, "json")
 		if p.NeedsFormTag {
 			fieldTagList = append(fieldTagList, "form")
@@ -688,7 +687,7 @@ func GenFieldsFromProperties(props []Property) []string {
 			}
 		} else {
 			for _, v := range fieldTagList {
-				fieldTags[v] =  p.JsonFieldName + ",omitempty"
+				fieldTags[v] = p.JsonFieldName + ",omitempty"
 			}
 		}
 
@@ -801,7 +800,8 @@ func generateUnion(outSchema *Schema, elements openapi3.SchemaRefs, discriminato
 		}
 
 		if element.Ref == "" {
-			td := TypeDefinition{Schema: elementSchema, TypeName: SchemaNameToTypeName(PathToTypeName(append(path, fmt.Sprint(i))))}
+			pTN := PathToTypeName(append(path, fmt.Sprint(i)))
+			td := TypeDefinition{Schema: elementSchema, JsonName: pTN, TypeName: SchemaNameToTypeName(pTN)}
 			outSchema.AdditionalTypes = append(outSchema.AdditionalTypes, td)
 			elementSchema.GoType = td.TypeName
 		} else {
